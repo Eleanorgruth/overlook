@@ -16,11 +16,11 @@
   <nav>
     <h2>Welcome, User!</h2>
     <menu class="button-container">
-      <button class="booking-buttons">Book a Room</button>
-      <button class="booking-buttons">My Bookings</button>
+      <button class="booking-buttons" id="bookARoom">Book a Room</button>
+      <button class="booking-buttons selected" id="myBookings">My Bookings</button>
     </menu>
   </nav>
-  <form class="customer-options">
+  <form class="customer-options hidden" id="bookingForm">
     <label for="start">Select:</label>
     <input type="date" class="date-selection" id="dateSelection"  name="trip-start" value="2022-11-09" min="2022-11-09">
     <label for="roomTypeSelection">Room Type:</label>
@@ -35,14 +35,19 @@
     <button class="book-room-btn">Search Room</button>
   </form>
   <p class="total-spent">Total Spent: $0</p>
-  <section class="booking-info">
+  <section class="booking-options-container hidden" id="bookingInfo">
     <div class="booking-option">
       <p>Room Number</p>
       <p>Room Cost</p>
       <p>Room Date</p>
       <button class="book-room-btn">Book Room</button>
     </div>
-
+  </section>
+  <section class="booked-rooms">
+    <div class="bookings" id="bookings">
+      <p>Room Number</p>
+      <p>Room Cost</p>
+      <p>Room Date</p>
   </section>
   
 <!-- 
