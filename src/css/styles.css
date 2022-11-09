@@ -41,7 +41,7 @@ button {
   font-size: 1.2em;
 }
 
-.booking-buttons:hover {
+.booking-buttons:hover, .selected {
   border-bottom: 5px solid black;
   /* color: black;
   background-color: white */
@@ -75,11 +75,11 @@ button {
   /* border-radius: 10%;
   height: 10px; */
 }
-.booking-info {
+.booking-options-container, .booked-rooms {
   height: 50vh;
   overflow-y: scroll;
 }
-.booking-option {
+.booking-option, .bookings {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -99,6 +99,7 @@ button {
   border-radius: 10%;
   height: 15%;
 }
+
 .hidden {
   display: none;
 }
