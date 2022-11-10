@@ -9,7 +9,7 @@ describe('Customer', () => {
   let customer1, booking1, booking2, booking3
 
   beforeEach(() => {
-    customer1 = new Customer(sampleCustomerData[0])
+    customer1 = new Customer(sampleCustomerData[0], sampleBookingData, sampleRoomData)
     booking1 = new Booking(sampleBookingData[0], sampleRoomData)
     booking2 = new Booking(sampleBookingData[1], sampleRoomData)
     booking3 = new Booking(sampleBookingData[2], sampleRoomData)
@@ -31,6 +31,9 @@ describe('Customer', () => {
   // })
   it('should be able to get the list of all booking the customer made', () => {
     customer1.getBookingsList(sampleBookingData, sampleRoomData)
-    expect(customer1.bookings).to.deep.equal([booking2, booking3, booking1])
+    expect(customer1.bookings).to.deep.equal([booking1, booking3, booking2])
+  })
+  it('should be able to calculate the cost of all booking the customer made', () => {
+    expect(customer1.totalCost).to.deep.equal(1170.41)
   })
 })
