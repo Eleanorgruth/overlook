@@ -1,5 +1,5 @@
 import chai from 'chai';
-import Customer from '../src/classes/Customer';
+// import Customer from '../src/classes/Customer';
 import Room from '../src/classes/Room';
 import { sampleBookingData, sampleCustomerData, sampleRoomData } from '../src/data/sample-data';
 const expect = chai.expect;
@@ -36,8 +36,4 @@ describe('Room', () => {
   it('should hold the cost per night', () => {
     expect(room1.costPerNight).to.equal(429.44)
   })
-  // it('should hold all the bookings', () => {
-  //   customer1.getBookingsList(sampleBookingData)
-  //   expect(customer1.bookings).to.deep.equal([])
-  // })
 })
