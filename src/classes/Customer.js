@@ -1,12 +1,11 @@
 import Booking from "./Booking"
 
 class Customer {
-  constructor(data) {
-    this.id = data.id
-    this.name = data.name
-    this.bookings = []
-    // this.upcomingBookings = []
-    // this.pastBookings = []
+  constructor(customerData, bookingData, roomData) {
+    this.id = customerData.id
+    this.name = customerData.name
+    this.bookings = this.getBookingsList(bookingData, roomData) 
+    this.totalCost = this.getTotalCost()
   }
   getBookingsList(bookingData, roomData) {
     const bookings = bookingData.filter((booking)=>{
@@ -15,9 +14,15 @@ class Customer {
     const bookingInfo = bookings.map((booking) => {
       return new Booking(booking, roomData)
     })
-    this.bookings = bookingInfo.sort((a, b) => {
-       return a.reformattedDate - b.reformattedDate
+    return bookingInfo.sort((a, b) => {
+       return b.reformattedDate - a.reformattedDate
     })
+  }
+  getTotalCost() {
+    return this.bookings.reduce((totalCost, booking)=>{
+      totalCost += booking.costPerNight
+      return totalCost
+    }, 0)
   }
 }
 
