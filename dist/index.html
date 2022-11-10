@@ -4,10 +4,61 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Starter Kit</title>
+  <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display" rel="stylesheet">
+  <title>Overlook</title>
 </head>
 <body>
-  <img src="./images/turing-logo.png" alt="turing logo">
+  <header>
+    <h1>Overlook</h1>
+    <button class="sign-out">Sign Out</button>
+  </header>
+  <nav>
+    <h2 id="welcomeMessage">Welcome, User!</h2>
+    <menu class="button-container">
+      <button class="booking-buttons" id="bookARoom">Book a Room</button>
+      <button class="booking-buttons selected" id="myBookings">My Bookings</button>
+    </menu>
+  </nav>
+  <form class="customer-options hidden" id="bookingForm">
+    <label for="start">Select:</label>
+    <input type="date" class="date-selection" id="dateSelection"  name="trip-start" value="2022-11-09" min="2022-11-09">
+    <label for="roomTypeSelection">Room Type:</label>
+    <select name="room-type" class="room-type-section" id="roomTypeSelection">
+      <option value="Choose Type...">Choose Type...</option>
+      <option value="all">all</option>
+      <option value="single room">single room</option>
+      <option value="junior suite">junior suite</option>
+      <option value="suite">suite</option>
+      <option value="residential suite">residential suite</option>
+    </select>
+    <button class="book-room-btn">Search Room</button>
+  </form>
+  <p class="total-spent">Total Spent: $0</p>
+  <section class="booking-options-container hidden" id="bookingInfo">
+    <div class="booking-option">
+      <p>Room Number</p>
+      <p>Room Cost</p>
+      <p>Room Date</p>
+      <button class="book-room-btn">Book Room</button>
+    </div>
+  </section>
+  <section class="booked-rooms">
+    <div class="bookings" id="bookings">
+      <p>Room Number</p>
+      <p>Room Cost</p>
+      <p>Room Date</p>
+  </section>
+  
+<!-- 
+  <section class="booking-preview">
+    <div class="room-info"><p class="room-num">Room ${eachRoom.number} - ${eachRoom.roomType}</p></div>
+    <div class="room-info"><p>${eachRoom.bedSize} (${eachRoom.numBeds}) - ${determineBidetStatus(eachRoom.bidet)}</p></div>
+    <div class="room-info"><p>$${eachRoom.costPerNight} /night</p></div>
+    <div class="room-info-btn"><button class="btn book-room-btn" id="${eachRoom.number}">Book</div>
+    </section>` -->
+  <!-- <img src="./images/turing-logo.png" alt="turing logo"> -->
+  <!-- <img src="./images/overlook-background-image.png" alt="background photo of mountains" -->
   
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
