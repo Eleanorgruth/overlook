@@ -1,10 +1,10 @@
-function getData() {
+const getData = (url) => {
   return fetch(url)
     .then(response => {
       if (!response.ok) {
-        throw new Error(`Sorry, something went wrong. ${response.status}: ${response.statusText}`)
+        throw new Error(`Error: ${response.status}: ${response.statusText}`)
       }
-      return response.json
+      return response.json()
     })
     .catch(err => {
       console.log('Fetch Error: ', err)
