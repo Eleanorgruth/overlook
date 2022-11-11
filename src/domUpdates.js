@@ -7,7 +7,9 @@ const bookedRoomsList = document.querySelector('#bookedRoomsList')
 const totalSpent = document.querySelector('#totalSpent')
 const dateSelection = document.querySelector('#dateSelection')
 
-dateSelection.min = new Date().toLocaleDateString('en-ca')
+function setMinimumDate() {
+  dateSelection.min = new Date().toLocaleDateString('en-ca')
+}
 
 bookARoomView.addEventListener('click', displayBookingOptions)
 myBookingView.addEventListener('click', displayMyBookings)
@@ -66,4 +68,4 @@ function unselected(currentElement) {
   currentElement.classList.remove('selected')
 }
 
-export { displayWelcomeMessage, displayBookedRoomsList }
+export { displayWelcomeMessage, displayBookedRoomsList, setMinimumDate }

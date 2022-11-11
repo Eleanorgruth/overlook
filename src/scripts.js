@@ -7,7 +7,7 @@ import './css/styles.css';
 import './images/turing-logo.png'
 import './images/overlook-background-image.png'
 import Customer from './classes/Customer';
-import { displayBookedRoomsList, displayWelcomeMessage } from './domUpdates';
+import { displayBookedRoomsList, displayWelcomeMessage, setMinimumDate } from './domUpdates';
 import { getData } from './apiCalls';
 
 const customersURL = 'http://localhost:3001/api/v1/customers'
@@ -30,6 +30,7 @@ function fetchData(urls) {
       apiBookings = data[2].bookings
       randomizeUser(apiCustomers, apiBookings, apiRooms)
       displayBookedRoomsList(customer)
+      setMinimumDate()
     })
 }
 
