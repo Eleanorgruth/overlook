@@ -5,6 +5,9 @@ const bookingOptions = document.querySelector('#bookingInfo')
 const welcomeMessage = document.querySelector('#welcomeMessage')
 const bookedRoomsList = document.querySelector('#bookedRoomsList')
 const totalSpent = document.querySelector('#totalSpent')
+const dateSelection = document.querySelector('#dateSelection')
+
+dateSelection.min = new Date().toLocaleDateString('en-ca')
 
 bookARoomView.addEventListener('click', displayBookingOptions)
 myBookingView.addEventListener('click', displayMyBookings)
