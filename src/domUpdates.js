@@ -1,3 +1,5 @@
+import { roomDirectory, apiBookings} from "./scripts"
+
 const myBookingView = document.querySelector('#myBookings')
 const bookARoomView = document.querySelector('#bookARoom')
 const bookingForm = document.querySelector('#bookingForm')
@@ -6,6 +8,9 @@ const welcomeMessage = document.querySelector('#welcomeMessage')
 const bookedRoomsList = document.querySelector('#bookedRoomsList')
 const totalSpent = document.querySelector('#totalSpent')
 const dateSelection = document.querySelector('#dateSelection')
+const roomTypeSelection = document.querySelector('#roomTypeSelection')
+const searchRoom = document.querySelector('#searchRoom')
+
 
 function setMinimumDate() {
   dateSelection.min = new Date().toLocaleDateString('en-ca')
@@ -13,7 +18,7 @@ function setMinimumDate() {
 
 bookARoomView.addEventListener('click', displayBookingOptions)
 myBookingView.addEventListener('click', displayMyBookings)
-
+searchRoom.addEventListener('click', filterAvailableRooms)
 //DOM Updates
 function displayBookingOptions() {
   show([bookingForm, bookingOptions])
@@ -46,6 +51,25 @@ function displayBookedRoomsList(customer) {
      <p>Date: ${booking.date}</p>
      <p>Cost Per Night: $${booking.costPerNight}</p>
     </section>
+    `
+  })
+}
+
+function filterAvailableRooms() {
+  event.preventDefault()
+  roomDirectory.findAvalibleRooms(dateSelection.value, roomTypeSelection.value, apiBookings)
+  console.log(roomDirectory.filteredRooms)
+  bookingOptions.innerHTML = ''
+  roomDirectory.filteredRooms.forEach((bookingOption)=>{
+    bookingOptions.innerHTML += `
+    <section class="booking-option">
+    <p>Room Number: ${bookingOption.number}</p>
+    <p>Room Info: ${bookingOption.roomType} with ${bookingOption.numBeds} ${bookingOption.bedSize}
+    bed(s)</p>
+    <p>Room Cost: $${bookingOption.costPerNight}</p>
+    <p>Room Date ${dateSelection.value}</p>
+    <button class="book-room-btn">Book Room</button>
+  </section>
     `
   })
 }
