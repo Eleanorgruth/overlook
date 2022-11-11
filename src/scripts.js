@@ -9,6 +9,7 @@ import './images/overlook-background-image.png'
 import Customer from './classes/Customer';
 import { displayBookedRoomsList, displayWelcomeMessage, setMinimumDate } from './domUpdates';
 import { getData } from './apiCalls';
+import RoomDirectory from './classes/RoomDirectory';
 
 const customersURL = 'http://localhost:3001/api/v1/customers'
 const roomURL = 'http://localhost:3001/api/v1/rooms'
@@ -19,6 +20,7 @@ let apiRooms
 let apiBookings 
 let randomCustomer
 let customer
+let roomDirectory
 
 window.addEventListener('load', fetchData([customersURL, roomURL, bookingURL]))
 
@@ -31,6 +33,7 @@ function fetchData(urls) {
       randomizeUser(apiCustomers, apiBookings, apiRooms)
       displayBookedRoomsList(customer)
       setMinimumDate()
+      roomDirectory = new RoomDirectory(apiRooms)
     })
 }
 
@@ -42,4 +45,4 @@ function randomizeUser(customerData, bookingData, roomData) {
   return customer
 }
 
-export {customer}
+export {customer, roomDirectory, apiBookings}
