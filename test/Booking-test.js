@@ -1,5 +1,4 @@
 import chai from 'chai';
-import Room from '../src/classes/Room';
 import Booking from '../src/classes/Booking';
 import { sampleBookingData, sampleRoomData } from '../src/data/sample-data';
 const expect = chai.expect;
@@ -13,8 +12,8 @@ describe('Booking', () => {
   beforeEach(() => {
     booking1 = new Booking(sampleBookingData[0], sampleRoomData)
     booking2 = new Booking(sampleBookingData[3], sampleRoomData)
-    room2 = new Room(sampleRoomData[1])
-    room4 = new Room(sampleRoomData[3])
+    room2 = sampleRoomData[1]
+    room4 = sampleRoomData[3]
     sampleBookingData
     sampleRoomData
   })
@@ -49,11 +48,11 @@ describe('Booking', () => {
     expect(booking1.roomType).to.equal("residential suite")
     expect(booking2.roomType).to.equal("junior suite")
   })
-  it('should hold the bidet status', () => {
+  it.skip('should hold the bidet status', () => {
     expect(booking1.bidet).to.equal(false)
     expect(booking2.bidet).to.equal(true)
   })
-  it('should hold the bidet message', () => {
+  it.skip('should hold the bidet message', () => {
     expect(booking1.bidetMessage).to.equal("bidet not included")
     expect(booking2.bidetMessage).to.equal("bidet included")
   })
