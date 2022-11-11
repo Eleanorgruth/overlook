@@ -33,10 +33,10 @@ class Booking {
       return "bidet not included"
     }
   }
-  findRoom(room) {
-    const roomDirectory = new RoomDirectory(room)
+  findRoom(roomData) {
+    const roomDirectory = new RoomDirectory(roomData)
     return roomDirectory.rooms.find((room) => {
-      return room.roomNumber === this.roomNumber
+      return room.number === this.roomNumber
     })
   }
   findRoomType(room) {
