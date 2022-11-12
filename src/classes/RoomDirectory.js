@@ -1,6 +1,6 @@
 class RoomDirectory {
   constructor(allRoomData) {
-    this.rooms = allRoomData
+    this.rooms = allRoomData 
     this.filteredRooms = []
   }
   findAvalibleRooms(date, roomType, bookingData) {
