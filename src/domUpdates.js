@@ -19,7 +19,9 @@ function setMinimumDate() {
 bookARoomView.addEventListener('click', displayBookingOptions)
 myBookingView.addEventListener('click', displayMyBookings)
 searchRoom.addEventListener('click', filterAvailableRooms)
+
 //DOM Updates
+
 function displayBookingOptions() {
   show([bookingForm, bookingOptions])
   hide([bookedRoomsList])
@@ -68,7 +70,7 @@ function filterAvailableRooms() {
     bed(s)</p>
     <p>Room Cost: $${bookingOption.costPerNight}</p>
     <p>Room Date ${dateSelection.value}</p>
-    <button class="book-room-btn">Book Room</button>
+    <button class="book-room-btn" id="${bookingOption.number}">Book Room</button>
   </section>
     `
   })
@@ -92,4 +94,4 @@ function unselected(currentElement) {
   currentElement.classList.remove('selected')
 }
 
-export { displayWelcomeMessage, displayBookedRoomsList, setMinimumDate }
+export { hide, displayWelcomeMessage, displayBookedRoomsList, setMinimumDate, bookingOptions, dateSelection, bookedRoomsList }
