@@ -10,6 +10,7 @@ const totalSpent = document.querySelector('#totalSpent')
 const dateSelection = document.querySelector('#dateSelection')
 const roomTypeSelection = document.querySelector('#roomTypeSelection')
 const searchRoom = document.querySelector('#searchRoom')
+const userFeedback = document.querySelector('#userFeedback')
 
 
 function setMinimumDate() {
@@ -23,6 +24,7 @@ searchRoom.addEventListener('click', filterAvailableRooms)
 //DOM Updates
 
 function displayBookingOptions() {
+  userFeedback.innerText = 'Please select a date and room type to view available rooms'
   show([bookingForm, bookingOptions])
   hide([bookedRoomsList])
   selected(bookARoomView)
@@ -51,35 +53,43 @@ function updateBookedRoomsList(customer) {
   bookedRoomsList.innerHTML = ''
   customer.bookings.forEach((booking)=> {
     bookedRoomsList.innerHTML += `
-    <section class="bookings" id="bookings">
-     <p>${booking.bookingStatus}: Room Number: ${booking.roomNumber}</p>
+    <section class="bookings" id="${booking.id}" tabindex='0'>
+     <p>${booking.bookingStatus}: Room Number: ${booking.roomNumber} ${booking.roomType}</p>
      <p>Room Info: ${booking.numBeds} ${booking.bedSize}
-      bed(s), ${booking.bidetMessage}</p>
+      bed(s)</p>
      <p>Date: ${booking.date}</p>
      <p>Cost Per Night: $${booking.costPerNight}</p>
     </section>
     `
   })
+  roomTypeSelection.value = 'Choose Type...'
+  dateSelection.value = ''
 
 }
 
-function filterAvailableRooms() {
+function filterAvailableRooms(event) {
   event.preventDefault()
-  roomDirectory.findAvalibleRooms(dateSelection.value, roomTypeSelection.value, apiBookings)
-  console.log(roomDirectory.filteredRooms)
-  bookingOptions.innerHTML = ''
-  roomDirectory.filteredRooms.forEach((bookingOption)=>{
-    bookingOptions.innerHTML += `
-    <section class="booking-option">
-    <p>Room Number: ${bookingOption.number}</p>
-    <p>Room Info: ${bookingOption.roomType} with ${bookingOption.numBeds} ${bookingOption.bedSize}
-    bed(s)</p>
-    <p>Room Cost: $${bookingOption.costPerNight}</p>
-    <p>Room Date ${dateSelection.value}</p>
-    <button class="book-room-btn" id="${bookingOption.number}">Book Room</button>
-  </section>
-    `
-  })
+  if(dateSelection.value === '') {
+    userFeedback.innerText = "Please select a date to book a room"
+  } else if(roomDirectory.filteredRooms === []) {
+    userFeedback.innerText = "Sorry,there are no room available that meet your search criteria. Please try again."
+  } else {
+    roomDirectory.findAvalibleRooms(dateSelection.value, roomTypeSelection.value, apiBookings)
+    console.log(roomDirectory.filteredRooms)
+    bookingOptions.innerHTML = ''
+    roomDirectory.filteredRooms.forEach((bookingOption)=>{
+      bookingOptions.innerHTML += `
+      <section class="booking-option" tabindex='0'>
+      <p>Room Number: ${bookingOption.number}</p>
+      <p>Room Info: ${bookingOption.roomType} with ${bookingOption.numBeds} ${bookingOption.bedSize}
+      bed(s)</p>
+      <p>Room Cost: $${bookingOption.costPerNight}</p>
+      <p>Room Date ${dateSelection.value}</p>
+      <button class="book-room-btn" id="${bookingOption.number}">Book Room</button>
+    </section>
+      `
+    })
+  }
 }
 //DOM HELPER FUNCTIONS
 function hide(elementList) {
@@ -87,7 +97,6 @@ function hide(elementList) {
     currentElement.classList.add('hidden')
   })
 }
-
 function show(elementList) {
   elementList.forEach((currentElement) => {
     currentElement.classList.remove('hidden')
@@ -99,5 +108,8 @@ function selected(currentElement) {
 function unselected(currentElement) {
   currentElement.classList.remove('selected')
 }
+function giveUserError() {
+  userFeedback.innerText = `Oops, something went wrong. Try again later.`
+}
 
-export { hide, displayWelcomeMessage, displayBookedRoomsList, setMinimumDate, bookingOptions, dateSelection, bookedRoomsList, updateBookedRoomsList }
+export { giveUserError, userFeedback, hide, displayWelcomeMessage, displayBookedRoomsList, setMinimumDate, bookingOptions, dateSelection, bookedRoomsList, updateBookedRoomsList, filterAvailableRooms}
