@@ -1,15 +1,15 @@
 
 // An example of how you tell webpack to use a CSS (SCSS) file
-import './css/styles.css';
+import './css/styles.css'
 
 // An example of how you tell webpack to use an image 
 //(also need to link to it in the index.html)
 import './images/turing-logo.png'
 import './images/overlook-background-image.png'
-import Customer from './classes/Customer';
-import { displayBookedRoomsList, displayWelcomeMessage, setMinimumDate, bookingOptions, dateSelection, updateBookedRoomsList } from './domUpdates';
-import { getData, postBooking } from './apiCalls';
-import RoomDirectory from './classes/RoomDirectory';
+import Customer from './classes/Customer'
+import { displayBookedRoomsList, displayWelcomeMessage, setMinimumDate, bookingOptions, dateSelection, updateBookedRoomsList, filterAvailableRooms, userFeedback } from './domUpdates'
+import { getData, postBooking } from './apiCalls'
+import RoomDirectory from './classes/RoomDirectory'
 
 const customersURL = 'http://localhost:3001/api/v1/customers'
 const roomURL = 'http://localhost:3001/api/v1/rooms'
@@ -38,8 +38,6 @@ function fetchData(urls) {
     })
 }
 
-
-
 //Other Functions
 function randomizeUser(customerData, bookingData, roomData) {
   randomCustomer = customerData[Math.floor(Math.random() * customerData.length)]
@@ -59,7 +57,7 @@ function bookRoom(event) {
   })
       .then(response => {
           if (!response.ok) {
-              throw new Error(`Sorry, something went wrong. ${response.status}: ${response.statusText}`)
+            throw new Error(`Sorry, something went wrong. ${response.status}: ${response.statusText}`)
           }
           return response.json()
       })
@@ -68,9 +66,11 @@ function bookRoom(event) {
         console.log("DATA", data)
        customer = new Customer(getCustomerData(customer), data.bookings, apiRooms)
        updateBookedRoomsList(customer)
+       filterAvailableRooms(event)
       })
       .catch(err => {
-          console.log('Fetch Error: ', err)
+        giveUserError()
+        console.log('Fetch Error: ', err)
       })
   }
 }
