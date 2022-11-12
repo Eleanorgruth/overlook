@@ -45,6 +45,12 @@ button {
 .total-spent {
   margin-left: 85%;
 }
+.user-info {
+  border-bottom: 3px solid white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
 .button-container {
   /* border: 2px solid salmon; */
@@ -73,6 +79,7 @@ button {
 .booking-options-container, .booked-rooms {
   height: 50vh;
   overflow-y: scroll;
+  margin: 5%;
 }
 .booking-option, .bookings {
   display: flex;
