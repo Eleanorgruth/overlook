@@ -7,8 +7,8 @@ import './css/styles.css';
 import './images/turing-logo.png'
 import './images/overlook-background-image.png'
 import Customer from './classes/Customer';
-import { displayBookedRoomsList, displayWelcomeMessage, setMinimumDate } from './domUpdates';
-import { getData } from './apiCalls';
+import { displayBookedRoomsList, displayWelcomeMessage, setMinimumDate, bookingOptions, dateSelection } from './domUpdates';
+import { getData, postBooking } from './apiCalls';
 import RoomDirectory from './classes/RoomDirectory';
 
 const customersURL = 'http://localhost:3001/api/v1/customers'
@@ -23,6 +23,7 @@ let customer
 let roomDirectory
 
 window.addEventListener('load', fetchData([customersURL, roomURL, bookingURL]))
+bookingOptions.addEventListener('click', bookRoom)
 
 function fetchData(urls) {
   Promise.all([getData(urls[0]), getData(urls[1]), getData(urls[2])])
@@ -45,4 +46,21 @@ function randomizeUser(customerData, bookingData, roomData) {
   return customer
 }
 
-export {customer, roomDirectory, apiBookings}
+function bookRoom(event) {
+  if (event.target.classList[0] === 'book-room-btn') {
+    const postData = {userID: customer.id, date: getDateForPost(dateSelection.value), roomNumber: Number(event.target.id)}
+    console.log(postData)
+    postBooking(postData)
+   
+  }
+}
+
+function getCustomerData(customer) {
+  return apiCustomers.find((currentCustomer)=> {
+    return currentCustomer.id === customer.id
+  })
+}
+function getDateForPost(date) {
+ return date.split('-').join('/')
+}
+export {customer, roomDirectory, apiBookings, bookingURL, displayBookedRoomsList, apiRooms, getCustomerData }
