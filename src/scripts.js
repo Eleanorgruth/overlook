@@ -7,7 +7,7 @@ import './css/styles.css';
 import './images/turing-logo.png'
 import './images/overlook-background-image.png'
 import Customer from './classes/Customer';
-import { displayBookedRoomsList, displayWelcomeMessage, setMinimumDate, bookingOptions, dateSelection } from './domUpdates';
+import { displayBookedRoomsList, displayWelcomeMessage, setMinimumDate, bookingOptions, dateSelection, updateBookedRoomsList } from './domUpdates';
 import { getData, postBooking } from './apiCalls';
 import RoomDirectory from './classes/RoomDirectory';
 
@@ -38,6 +38,8 @@ function fetchData(urls) {
     })
 }
 
+
+
 //Other Functions
 function randomizeUser(customerData, bookingData, roomData) {
   randomCustomer = customerData[Math.floor(Math.random() * customerData.length)]
@@ -50,8 +52,26 @@ function bookRoom(event) {
   if (event.target.classList[0] === 'book-room-btn') {
     const postData = {userID: customer.id, date: getDateForPost(dateSelection.value), roomNumber: Number(event.target.id)}
     console.log(postData)
-    postBooking(postData)
-   
+    return fetch(bookingURL, {
+      method: 'POST',
+      body: JSON.stringify(postData),
+      headers: { 'Content-Type': 'application/json' }
+  })
+      .then(response => {
+          if (!response.ok) {
+              throw new Error(`Sorry, something went wrong. ${response.status}: ${response.statusText}`)
+          }
+          return response.json()
+      })
+      .then(test => getData(bookingURL))
+      .then(data => {
+        console.log("DATA", data)
+       customer = new Customer(getCustomerData(customer), data.bookings, apiRooms)
+       updateBookedRoomsList(customer)
+      })
+      .catch(err => {
+          console.log('Fetch Error: ', err)
+      })
   }
 }
 
