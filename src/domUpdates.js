@@ -41,7 +41,12 @@ function displayWelcomeMessage(customerName) {
 }
 
 function displayBookedRoomsList(customer) {
+  updateBookedRoomsList(customer)
   show([bookedRoomsList])
+}
+
+function updateBookedRoomsList(customer) {
+  hide([bookedRoomsList])
   totalSpent.innerText = `Total Spent: $${customer.totalCost.toFixed(2)}`
   bookedRoomsList.innerHTML = ''
   customer.bookings.forEach((booking)=> {
@@ -55,6 +60,7 @@ function displayBookedRoomsList(customer) {
     </section>
     `
   })
+
 }
 
 function filterAvailableRooms() {
@@ -94,4 +100,4 @@ function unselected(currentElement) {
   currentElement.classList.remove('selected')
 }
 
-export { hide, displayWelcomeMessage, displayBookedRoomsList, setMinimumDate, bookingOptions, dateSelection, bookedRoomsList }
+export { hide, displayWelcomeMessage, displayBookedRoomsList, setMinimumDate, bookingOptions, dateSelection, bookedRoomsList, updateBookedRoomsList }
