@@ -1,5 +1,5 @@
-import Customer from "./classes/Customer"
-import { bookingURL, displayBookedRoomsList, customer, apiRooms, getCustomerData } from "./scripts"
+//, userFeedback, bookingURL, displayBookedRoomsList, customer, apiRooms, getCustomerData
+import { giveUserError } from "./domUpdates"
 
 const getData = (url) => {
   return fetch(url)
@@ -10,6 +10,7 @@ const getData = (url) => {
       return response.json()
     })
     .catch(err => {
+      giveUserError()
       console.log('Fetch Error: ', err)
     })
 }
