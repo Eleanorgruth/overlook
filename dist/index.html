@@ -22,7 +22,7 @@
   </nav>
   <form class="customer-options hidden" id="bookingForm">
     <label for="dateSelection">Select:</label>
-    <input name="dateSelection" type="date" class="date-selection" id="dateSelection" value="2022-11-09" min="2022-11-09">
+    <input name="dateSelection" type="date" class="date-selection" id="dateSelection" min="2022-11-01">
     <label for="roomTypeSelection">Room Type:</label>
     <select name="room-type" class="room-type-section" id="roomTypeSelection">
       <option value="Choose Type...">Choose Type...</option>
@@ -32,16 +32,13 @@
       <option value="suite">suite</option>
       <option value="residential suite">residential suite</option>
     </select>
-    <button class="book-room-btn">Search Room</button>
+    <button class="book-room-btn" id="searchRoom">Search Room</button>
   </form>
-  <p class="total-spent" id="totalSpent">Total Spent: $0</p>
+  <section class="user-info">
+    <p class="user-feedback" id="userFeedback"></p>
+    <p class="total-spent" id="totalSpent">Total Spent: $0</p>
+  </section>
   <section class="booking-options-container hidden" id="bookingInfo">
-    <div class="booking-option">
-      <p>Room Number</p>
-      <p>Room Cost</p>
-      <p>Room Date</p>
-      <button class="book-room-btn">Book Room</button>
-    </div>
   </section>
   <section class="booked-rooms hidden" id="bookedRoomsList">
   </section>

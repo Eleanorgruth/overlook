@@ -1,3 +1,6 @@
+//, userFeedback, bookingURL, displayBookedRoomsList, customer, apiRooms, getCustomerData
+import { giveUserError } from "./domUpdates"
+
 const getData = (url) => {
   return fetch(url)
     .then(response => {
@@ -7,6 +10,7 @@ const getData = (url) => {
       return response.json()
     })
     .catch(err => {
+      giveUserError()
       console.log('Fetch Error: ', err)
     })
 }
