@@ -1,13 +1,7 @@
-
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/styles.css'
-
-// An example of how you tell webpack to use an image 
-//(also need to link to it in the index.html)
-import './images/turing-logo.png'
 import './images/overlook-background-image.png'
 import Customer from './classes/Customer'
-import { displayBookedRoomsList, displayWelcomeMessage, setMinimumDate, bookingOptions, dateSelection, updateBookedRoomsList, userFeedback, bookingConfirmation, displayMyBookings } from './domUpdates'
+import { displayBookedRoomsList, displayWelcomeMessage, setMinimumDate, bookingOptions, dateSelection, updateBookedRoomsList, bookingConfirmation, displayMyBookings } from './domUpdates'
 import { getData } from './apiCalls'
 import RoomDirectory from './classes/RoomDirectory'
 
