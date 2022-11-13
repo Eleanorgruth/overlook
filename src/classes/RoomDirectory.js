@@ -1,14 +1,15 @@
+import { getDateForPost } from "../scripts"
+
 class RoomDirectory {
-  constructor(allRoomData) {
+  constructor(allRoomData, allBookingsData) {
     this.rooms = allRoomData 
+    this.bookings = allBookingsData
     this.filteredRooms = []
   }
-  findAvalibleRooms(date, roomType, bookingData) {
+  findAvalibleRooms(date, roomType) {
     const filteredRooms = this.rooms.reduce((avalibleRooms, room) => {
-     const roomNumbersBooked = bookingData.reduce((roomNumbersBooked, booking)=> {
-      const date2 = new Date(date)  
-      const date1 = new Date(booking.date)
-      if (date1.getTime() === date2.getTime()) {
+     const roomNumbersBooked = this.bookings.reduce((roomNumbersBooked, booking)=> {
+      if (getDateForPost(date) === booking.date) {
        roomNumbersBooked.push(booking.roomNumber)
       }
        return roomNumbersBooked
@@ -25,6 +26,7 @@ class RoomDirectory {
       }
     })
     this.filteredRooms = filteredRooms
+    return this.filteredRooms
   }
 }
 
