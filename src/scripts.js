@@ -7,8 +7,8 @@ import './css/styles.css'
 import './images/turing-logo.png'
 import './images/overlook-background-image.png'
 import Customer from './classes/Customer'
-import { displayBookedRoomsList, displayWelcomeMessage, setMinimumDate, bookingOptions, dateSelection, updateBookedRoomsList, filterAvailableRooms, userFeedback } from './domUpdates'
-import { getData, postBooking } from './apiCalls'
+import { displayBookedRoomsList, displayWelcomeMessage, setMinimumDate, bookingOptions, dateSelection, updateBookedRoomsList, userFeedback, bookingConfirmation, displayMyBookings } from './domUpdates'
+import { getData } from './apiCalls'
 import RoomDirectory from './classes/RoomDirectory'
 
 const customersURL = 'http://localhost:3001/api/v1/customers'
@@ -34,7 +34,7 @@ function fetchData(urls) {
       randomizeUser(apiCustomers, apiBookings, apiRooms)
       displayBookedRoomsList(customer)
       setMinimumDate()
-      roomDirectory = new RoomDirectory(apiRooms)
+      roomDirectory = new RoomDirectory(apiRooms, apiBookings)
     })
 }
 
@@ -63,10 +63,14 @@ function bookRoom(event) {
       })
       .then(test => getData(bookingURL))
       .then(data => {
-        console.log("DATA", data)
+        console.log("DATA", data.bookings)
        customer = new Customer(getCustomerData(customer), data.bookings, apiRooms)
        updateBookedRoomsList(customer)
-       filterAvailableRooms(event)
+       roomDirectory = new RoomDirectory(apiRooms, data.bookings)
+       bookingConfirmation()
+       setTimeout(()=>{
+        displayMyBookings()
+       }, 3000)
       })
       .catch(err => {
         giveUserError()
@@ -83,4 +87,4 @@ function getCustomerData(customer) {
 function getDateForPost(date) {
  return date.split('-').join('/')
 }
-export {customer, roomDirectory, apiBookings, bookingURL, displayBookedRoomsList, apiRooms, getCustomerData }
+export {customer, roomDirectory, apiBookings, bookingURL, displayBookedRoomsList, apiRooms, getCustomerData, getDateForPost }
