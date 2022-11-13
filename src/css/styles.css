@@ -68,13 +68,10 @@ button {
   height: 35%; 
   margin-top: 3%;
   font-size: 1.3em;
-
 }
 .sign-out:hover , .book-room-btn:hover {
   color: black;
   background-color: white;
-  /* border-radius: 10%;
-  height: 10px; */
 }
 .booking-options-container, .booked-rooms {
   height: 50vh;
@@ -105,7 +102,14 @@ button {
   border-radius: 10%;
   height: 15%;
 }
-
+.req {
+  color:#f91920;
+  font-size: 1.3em;
+}
+.user-feedback {
+  font-weight: 900;
+  font-size: 1.2em;
+}
 .hidden {
   display: none;
 }
