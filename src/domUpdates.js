@@ -79,17 +79,16 @@ function updateBookedRoomsList(customer) {
 
 function displayAvalibleRooms() {
   event.preventDefault()
+  bookingOptions.innerHTML = ''
+  roomDirectory.findAvalibleRooms(dateSelection.value, roomTypeSelection.value)
+  console.log("ARRAY OF ROOMS", roomDirectory.filteredRooms)
   if (dateSelection.value === '') {
     userFeedback.innerText = "Please select a date to search for a room"
-  } 
-  roomDirectory.findAvalibleRooms(dateSelection.value, roomTypeSelection.value)
-  console.log("roomDirectory.filteredRoom", roomDirectory.filteredRooms)
-  if (roomDirectory.filteredRooms === []) {
-    userFeedback.innerText = `Sorry,there are no rooms available that 
-    meet your search criteria. Please try again.`
+  } else if (roomDirectory.filteredRooms.length === 0) {
+    userFeedback.innerText = "Sorry, there are no rooms available that meet your search criteria. Please try again."
   } else {
-    bookingOptions.innerHTML = ''
     roomDirectory.filteredRooms.forEach((bookingOption) => {
+      userFeedback.innerText = ''
       bookingOptions.innerHTML += `
       <section class="booking-option" id="${bookingOption.number}" tabindex='0'>
       <p>Room Number: ${bookingOption.number}</p>
@@ -129,7 +128,6 @@ function unselected(currentElement) {
 function giveUserError() {
   userFeedback.innerText = `Oops, something went wrong. Try again later.`
 }
-
 
 export {
   giveUserError,
