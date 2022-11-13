@@ -1,4 +1,4 @@
-import { roomDirectory, apiBookings } from "./scripts"
+import { roomDirectory} from "./scripts"
 
 const myBookingView = document.querySelector('#myBookings')
 const bookARoomView = document.querySelector('#bookARoom')
@@ -81,12 +81,13 @@ function displayAvalibleRooms() {
   event.preventDefault()
   if (dateSelection.value === '') {
     userFeedback.innerText = "Please select a date to search for a room"
-  } else if (roomDirectory.filteredRooms === []) {
+  } 
+  roomDirectory.findAvalibleRooms(dateSelection.value, roomTypeSelection.value)
+  console.log("roomDirectory.filteredRoom", roomDirectory.filteredRooms)
+  if (roomDirectory.filteredRooms === []) {
     userFeedback.innerText = `Sorry,there are no rooms available that 
     meet your search criteria. Please try again.`
   } else {
-    roomDirectory.findAvalibleRooms(dateSelection.value, roomTypeSelection.value, apiBookings)
-    console.log(roomDirectory.filteredRooms)
     bookingOptions.innerHTML = ''
     roomDirectory.filteredRooms.forEach((bookingOption) => {
       bookingOptions.innerHTML += `
@@ -129,6 +130,7 @@ function giveUserError() {
   userFeedback.innerText = `Oops, something went wrong. Try again later.`
 }
 
+
 export {
   giveUserError,
   userFeedback,
@@ -143,5 +145,5 @@ export {
   displayAvalibleRooms,
   roomTypeSelection,
   bookingConfirmation,
-  displayMyBookings
+  displayMyBookings,
 }
