@@ -1,13 +1,18 @@
-import chai from 'chai';
-import Booking from '../src/classes/Booking';
-import { sampleBookingData, sampleRoomData } from '../src/data/sample-data';
-const expect = chai.expect;
-
+import chai from 'chai'
+const expect = chai.expect
+import Booking from '../src/classes/Booking'
+import {
+  sampleBookingData,
+  sampleRoomData
+} from '../src/data/sample-data'
 
 describe('Booking', () => {
   sampleBookingData
   sampleRoomData
-  let booking1, booking2, room4, room2
+  let booking1,
+    booking2,
+    room4,
+    room2
 
   beforeEach(() => {
     booking1 = new Booking(sampleBookingData[0], sampleRoomData)
@@ -48,13 +53,9 @@ describe('Booking', () => {
     expect(booking1.roomType).to.equal("residential suite")
     expect(booking2.roomType).to.equal("junior suite")
   })
-  it.skip('should hold the bidet status', () => {
+  it('should hold the bidet status', () => {
     expect(booking1.bidet).to.equal(false)
     expect(booking2.bidet).to.equal(true)
-  })
-  it.skip('should hold the bidet message', () => {
-    expect(booking1.bidetMessage).to.equal("bidet not included")
-    expect(booking2.bidetMessage).to.equal("bidet included")
   })
   it('should hold the bed size', () => {
     expect(booking1.bedSize).to.equal("queen")

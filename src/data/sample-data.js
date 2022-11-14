@@ -109,4 +109,8 @@ const sampleRoomData = [
     costPerNight: 343.95
   }
 ]
-export { sampleCustomerData, sampleBookingData, sampleRoomData }
+export {
+  sampleCustomerData,
+  sampleBookingData,
+  sampleRoomData
+}

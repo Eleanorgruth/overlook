@@ -3,14 +3,14 @@ import './images/overlook-background-image.png'
 import Customer from './classes/Customer'
 import {
   displayBookedRoomsList,
-  setMinimumDate,
+  setMinimumAndMaximumDate,
   bookingOptions,
   dateSelection,
   updateBookedRoomsList,
   bookingConfirmation,
   displayMyBookings,
   giveUserError,
-  show
+  show,
 } from './domUpdates'
 import { getData } from './apiCalls'
 import RoomDirectory from './classes/RoomDirectory'
@@ -28,6 +28,7 @@ let roomDirectory
 const signInButton = document.querySelector('#signInButton')
 const usernameInput = document.querySelector('#username')
 const passwordInput = document.querySelector('#password')
+const signInErorr = document.querySelector('#signInErorr')
 
 signInButton.addEventListener('click', checkSignInInfo)
 bookingOptions.addEventListener('click', bookRoom)
@@ -46,7 +47,6 @@ function checkSignInInfo() {
     let customerURL = customersURL + usernameID
     fetchData([customerURL, roomURL, bookingURL])
   } else {
-    const signInErorr = document.querySelector('#signInErorr')
     show([signInErorr])
   }
 }
@@ -54,14 +54,17 @@ function checkSignInInfo() {
 function fetchData(urls) {
   Promise.all([getData(urls[0]), getData(urls[1]), getData(urls[2])])
     .then(data => {
-      console.log(data)
       apiCustomers = data[0]
       apiRooms = data[1].rooms
       apiBookings = data[2].bookings
       customer = new Customer(apiCustomers, apiBookings, apiRooms)
       displayBookedRoomsList(customer)
-      setMinimumDate()
+      setMinimumAndMaximumDate()
       roomDirectory = new RoomDirectory(apiRooms, apiBookings)
+    })
+    .catch(err => {
+      giveUserError()
+      console.log('Fetch Error: ', err)
     })
 }
 

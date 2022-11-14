@@ -1,5 +1,3 @@
-import { getDateForPost } from "../scripts"
-
 class RoomDirectory {
   constructor(allRoomData, allBookingsData) {
     this.rooms = allRoomData 
@@ -9,7 +7,7 @@ class RoomDirectory {
   findAvalibleRooms(date, roomType) {
     const filteredRooms = this.rooms.reduce((avalibleRooms, room) => {
      const roomNumbersBooked = this.bookings.reduce((roomNumbersBooked, booking)=> {
-      if (getDateForPost(date) === booking.date) {
+      if (date.split('-').join('/') === booking.date) {
        roomNumbersBooked.push(booking.roomNumber)
       }
        return roomNumbersBooked
