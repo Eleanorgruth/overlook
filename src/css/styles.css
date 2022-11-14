@@ -1,6 +1,5 @@
 * {
   font-family: "Playfair Display";
-  /* background-color: transparent; */
 }
 body {
   color: white;
@@ -10,6 +9,18 @@ body {
   background-repeat: no-repeat;
   height: 100vh;
   margin: 0px;
+}
+.login-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sign-in {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 4%;
+  margin-bottom: 3%;
+  width: 60%;
 }
 h1 {
   font-family: "Berkshire Swash";
@@ -37,11 +48,9 @@ button {
   background-color: transparent;
   font-size: 1.2em;
 }
-
 .booking-buttons:hover, .selected {
   border-bottom: 5px solid black;
 }
-
 .total-spent {
   margin-left: 85%;
 }
@@ -51,9 +60,7 @@ button {
   flex-wrap: wrap;
   justify-content: center;
 }
-
 .button-container {
-  /* border: 2px solid salmon; */
   display: flex;
   width: 30%;
   justify-content: space-between;
@@ -69,7 +76,7 @@ button {
   margin-top: 3%;
   font-size: 1.3em;
 }
-.sign-out:hover , .book-room-btn:hover {
+.sign-out:hover , .book-room-btn:hover, .sign-in-btn:hover {
   color: black;
   background-color: white;
 }
@@ -83,11 +90,9 @@ button {
   justify-content: space-evenly;
   align-items: center;
 }
-
 .bookings:hover {
   background-color: rgba(0, 0, 0, 0.5);
 }
-
 .customer-options {
   display: flex;
   justify-content: space-evenly;
@@ -95,7 +100,7 @@ button {
   margin-left: 25%;
   margin-right: 25%;
 }
-.book-room-btn {
+.book-room-btn, .sign-in-btn {
   cursor: pointer;
   background-color: transparent;
   border: 2px solid white;
