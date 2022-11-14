@@ -16,6 +16,10 @@ const signOut = document.querySelector('#signOut')
 const userInfo = document.querySelector('#userInfo')
 const loginView = document.querySelector('#loginView')
 
+bookARoomView.addEventListener('click', displayBookingOptions)
+myBookingView.addEventListener('click', displayMyBookings)
+searchRoom.addEventListener('click', displayAvalibleRooms)
+signOut.addEventListener('click', logout)
 dateSelection.addEventListener('keypress', (event) => {
   if (event.key === 'Enter') {
     displayAvalibleRooms()
@@ -28,16 +32,16 @@ roomTypeSelection.addEventListener('keypress', (event) => {
   }
 })
 
-bookARoomView.addEventListener('click', displayBookingOptions)
-myBookingView.addEventListener('click', displayMyBookings)
-searchRoom.addEventListener('click', displayAvalibleRooms)
-signOut.addEventListener('click', resetPage)
-
-function resetPage() {
+function logout() {
   window.location.reload()
 }
-function setMinimumDate() {
+
+function setMinimumAndMaximumDate() {
   dateSelection.min = new Date().toLocaleDateString('en-ca')
+  let maxYear = new Date().getFullYear()+1
+  let month = new Date().getMonth()+1
+  let day = new Date().getDate()
+  dateSelection.max = `${maxYear}-${month}-${day}`
 }
 
 function displayBookingOptions() {
@@ -141,7 +145,7 @@ export {
   userFeedback,
   hide,
   displayBookedRoomsList,
-  setMinimumDate,
+  setMinimumAndMaximumDate,
   bookingOptions,
   dateSelection,
   bookedRoomsList,
