@@ -40,22 +40,17 @@ describe('RoomDirectory', () => {
   it('should be able to filter the avalible rooms by date and type', () => {
     roomDirectory.findAvalibleRooms("2022/02/02", "all", sampleBookingData)
     expect(roomDirectory.filteredRooms).to.deep.equal([room1, room2, room4])
-    roomDirectory.findAvalibleRooms("2022/02/15", "junior suite",
-      sampleBookingData)
+    roomDirectory.findAvalibleRooms("2022/02/15", "junior suite", sampleBookingData)
     expect(roomDirectory.filteredRooms).to.deep.equal([room2])
-    roomDirectory.findAvalibleRooms("2022/02/15", "residential suite", 
-      sampleBookingData)
+    roomDirectory.findAvalibleRooms("2022/02/15", "residential suite", sampleBookingData)
     expect(roomDirectory.filteredRooms).to.deep.equal([room4])
-    roomDirectory.findAvalibleRooms("2023/02/14", "single room",
-      sampleBookingData)
+    roomDirectory.findAvalibleRooms("2023/02/14", "single room",sampleBookingData)
     expect(roomDirectory.filteredRooms).to.deep.equal([room1, room3])
   })
   it('should be an empty array if no rooms meet the search criteria', () => {
-    roomDirectory.findAvalibleRooms("2022/01/22", "junior suite",
-      sampleBookingData)
+    roomDirectory.findAvalibleRooms("2022/01/22", "junior suite", sampleBookingData)
     expect(roomDirectory.filteredRooms).to.deep.equal([])
-    roomDirectory.findAvalibleRooms("2023/02/14", "residential suite",
-      sampleBookingData)
+    roomDirectory.findAvalibleRooms("2023/02/14", "residential suite", sampleBookingData)
     expect(roomDirectory.filteredRooms).to.deep.equal([])
   })
 })
