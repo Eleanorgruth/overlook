@@ -10,7 +10,7 @@ import {
   bookingConfirmation,
   displayMyBookings,
   giveUserError,
-  show
+  show,
 } from './domUpdates'
 import { getData } from './apiCalls'
 import RoomDirectory from './classes/RoomDirectory'
