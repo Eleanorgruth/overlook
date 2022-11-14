@@ -1,7 +1,7 @@
 import './css/styles.css'
 import './images/overlook-background-image.png'
 import Customer from './classes/Customer'
-import { displayBookedRoomsList, setMinimumDate, bookingOptions, dateSelection, updateBookedRoomsList, bookingConfirmation, displayMyBookings } from './domUpdates'
+import { displayBookedRoomsList, setMinimumDate, bookingOptions, dateSelection, updateBookedRoomsList, bookingConfirmation, displayMyBookings, giveUserError } from './domUpdates'
 import { getData } from './apiCalls'
 import RoomDirectory from './classes/RoomDirectory'
 
@@ -53,12 +53,12 @@ function fetchData(urls) {
 }
 
 //Other Functions
-function randomizeUser(customerData, bookingData, roomData) {
-  randomCustomer = customerData[Math.floor(Math.random() * customerData.length)]
-  customer = new Customer(randomCustomer, bookingData, roomData)
-  displayWelcomeMessage(customer.name)
-  return customer
-}
+// function randomizeUser(customerData, bookingData, roomData) {
+//   randomCustomer = customerData[Math.floor(Math.random() * customerData.length)]
+//   customer = new Customer(randomCustomer, bookingData, roomData)
+//   displayWelcomeMessage(customer.name)
+//   return customer
+// }
 
 function bookRoom(event) {
   if (event.target.classList[0] === 'book-room-btn') {
@@ -78,7 +78,7 @@ function bookRoom(event) {
       .then(test => getData(bookingURL))
       .then(data => {
         console.log("DATA", data.bookings)
-       customer = new Customer(getCustomerData(customer), data.bookings, apiRooms)
+       customer = new Customer(apiCustomers, data.bookings, apiRooms)
        updateBookedRoomsList(customer)
        roomDirectory = new RoomDirectory(apiRooms, data.bookings)
        bookingConfirmation()
@@ -93,12 +93,12 @@ function bookRoom(event) {
   }
 }
 
-function getCustomerData(customer) {
-  return apiCustomers.find((currentCustomer)=> {
-    return currentCustomer.id === customer.id
-  })
-}
+// function getCustomerData(customer) {
+//   return apiCustomers.find((currentCustomer)=> {
+//     return currentCustomer.id === customer.id
+//   })
+// }
 function getDateForPost(date) {
  return date.split('-').join('/')
 }
-export {customer, roomDirectory, apiBookings, bookingURL, displayBookedRoomsList, apiRooms, getCustomerData, getDateForPost }
+export {customer, roomDirectory, apiBookings, bookingURL, displayBookedRoomsList, apiRooms, getDateForPost }
