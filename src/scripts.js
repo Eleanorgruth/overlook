@@ -1,11 +1,11 @@
 import './css/styles.css'
 import './images/overlook-background-image.png'
 import Customer from './classes/Customer'
-import { displayBookedRoomsList, displayWelcomeMessage, setMinimumDate, bookingOptions, dateSelection, updateBookedRoomsList, bookingConfirmation, displayMyBookings } from './domUpdates'
+import { displayBookedRoomsList, setMinimumDate, bookingOptions, dateSelection, updateBookedRoomsList, bookingConfirmation, displayMyBookings } from './domUpdates'
 import { getData } from './apiCalls'
 import RoomDirectory from './classes/RoomDirectory'
 
-const customersURL = 'http://localhost:3001/api/v1/customers'
+let customersURL = 'http://localhost:3001/api/v1/customers/'
 const roomURL = 'http://localhost:3001/api/v1/rooms'
 const bookingURL = 'http://localhost:3001/api/v1/bookings'
 
@@ -16,16 +16,36 @@ let randomCustomer
 let customer
 let roomDirectory
 
-window.addEventListener('load', fetchData([customersURL, roomURL, bookingURL]))
+const signInButton = document.querySelector('#signInButton')
+const usernameInput = document.querySelector('#username')
+const passwordInput = document.querySelector('#password')
+
+signInButton.addEventListener('click', checkSignInInfo)
+
+function checkSignInInfo() {
+  let username = usernameInput.value.slice(0, 8) 
+  let usernameID = Number(usernameInput.value.slice(8))
+  console.log("USERNAME", username)
+  console.log("USERNAMEID", usernameID)
+  if (username ==="customer" && usernameID > 0 && usernameID <= 50 && passwordInput.value === "overlook2021") {
+    let customerURL = customersURL + usernameID
+    fetchData([customerURL, roomURL, bookingURL])
+    console.log("HELP")
+  } else {
+    //display error "invalid password or userName, try again"
+  }
+}
+//window.addEventListener('load', fetchData([customersURL, roomURL, bookingURL]))
 bookingOptions.addEventListener('click', bookRoom)
 
 function fetchData(urls) {
   Promise.all([getData(urls[0]), getData(urls[1]), getData(urls[2])])
     .then(data => {
-      apiCustomers = data[0].customers
+      console.log(data)
+      apiCustomers = data[0]
       apiRooms = data[1].rooms
       apiBookings = data[2].bookings
-      randomizeUser(apiCustomers, apiBookings, apiRooms)
+      customer = new Customer(apiCustomers, apiBookings, apiRooms)
       displayBookedRoomsList(customer)
       setMinimumDate()
       roomDirectory = new RoomDirectory(apiRooms, apiBookings)
