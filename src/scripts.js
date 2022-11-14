@@ -28,6 +28,7 @@ let roomDirectory
 const signInButton = document.querySelector('#signInButton')
 const usernameInput = document.querySelector('#username')
 const passwordInput = document.querySelector('#password')
+const signInErorr = document.querySelector('#signInErorr')
 
 signInButton.addEventListener('click', checkSignInInfo)
 bookingOptions.addEventListener('click', bookRoom)
@@ -46,7 +47,6 @@ function checkSignInInfo() {
     let customerURL = customersURL + usernameID
     fetchData([customerURL, roomURL, bookingURL])
   } else {
-    const signInErorr = document.querySelector('#signInErorr')
     show([signInErorr])
   }
 }
