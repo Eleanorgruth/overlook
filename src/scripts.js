@@ -3,7 +3,7 @@ import './images/overlook-background-image.png'
 import Customer from './classes/Customer'
 import {
   displayBookedRoomsList,
-  setMinimumDate,
+  setMinimumAndMaximumDate,
   bookingOptions,
   dateSelection,
   updateBookedRoomsList,
@@ -59,8 +59,12 @@ function fetchData(urls) {
       apiBookings = data[2].bookings
       customer = new Customer(apiCustomers, apiBookings, apiRooms)
       displayBookedRoomsList(customer)
-      setMinimumDate()
+      setMinimumAndMaximumDate()
       roomDirectory = new RoomDirectory(apiRooms, apiBookings)
+    })
+    .catch(err => {
+      giveUserError()
+      console.log('Fetch Error: ', err)
     })
 }
 
