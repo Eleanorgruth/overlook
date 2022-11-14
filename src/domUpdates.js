@@ -87,7 +87,6 @@ function displayAvalibleRooms() {
   event.preventDefault()
   bookingOptions.innerHTML = ''
   roomDirectory.findAvalibleRooms(dateSelection.value, roomTypeSelection.value)
-  console.log("ARRAY OF ROOMS", roomDirectory.filteredRooms)
   if (dateSelection.value === '') {
     userFeedback.innerText = "Please select a date to search for a room"
   } else if (roomDirectory.filteredRooms.length === 0) {
