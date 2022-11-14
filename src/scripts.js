@@ -54,7 +54,6 @@ function checkSignInInfo() {
 function fetchData(urls) {
   Promise.all([getData(urls[0]), getData(urls[1]), getData(urls[2])])
     .then(data => {
-      console.log(data)
       apiCustomers = data[0]
       apiRooms = data[1].rooms
       apiBookings = data[2].bookings
