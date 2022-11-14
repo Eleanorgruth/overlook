@@ -11,6 +11,11 @@ body {
   height: 100vh;
   margin: 0px;
 }
+.sign-in {
+  display: flex;
+  justify-content: center;
+  margin-top: 15%;
+}
 h1 {
   font-family: "Berkshire Swash";
   font-size: 3.6em;
@@ -69,7 +74,7 @@ button {
   margin-top: 3%;
   font-size: 1.3em;
 }
-.sign-out:hover , .book-room-btn:hover {
+.sign-out:hover , .book-room-btn:hover, .sign-in-btn:hover {
   color: black;
   background-color: white;
 }
@@ -95,7 +100,7 @@ button {
   margin-left: 25%;
   margin-right: 25%;
 }
-.book-room-btn {
+.book-room-btn, .sign-in-btn {
   cursor: pointer;
   background-color: transparent;
   border: 2px solid white;
