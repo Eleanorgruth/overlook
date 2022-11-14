@@ -12,6 +12,8 @@ const roomTypeSelection = document.querySelector('#roomTypeSelection')
 const searchRoom = document.querySelector('#searchRoom')
 const userFeedback = document.querySelector('#userFeedback')
 const navBar = document.querySelector('#navBar')
+const signOut = document.querySelector('#signOut')
+const userInfo = document.querySelector('#userInfo')
 
 dateSelection.addEventListener('keypress', (event) => {
   if (event.key === 'Enter') {
@@ -55,7 +57,7 @@ function displayMyBookings() {
 function displayBookedRoomsList(customer) {
   updateBookedRoomsList(customer)
   welcomeMessage.innerText = `Welcome, ${customer.name}`
-  show([bookedRoomsList, navBar])
+  show([bookedRoomsList, navBar, signOut, totalSpent, userInfo])
 }
 
 function updateBookedRoomsList(customer) {
