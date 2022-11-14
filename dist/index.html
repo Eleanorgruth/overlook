@@ -11,9 +11,9 @@
 <body>
   <header>
     <h1>Overlook</h1>
-    <button class="sign-out">Sign Out</button>
+    <button class="sign-out hidden">Sign Out</button>
   </header>
-  <nav>
+  <nav class="hidden" id="navBar">
     <h2 id="welcomeMessage">Welcome, User!</h2>
     <menu class="button-container">
       <button class="booking-buttons" id="bookARoom">Book a Room</button>
@@ -34,13 +34,20 @@
     </select>
     <button class="book-room-btn" id="searchRoom">Search Room</button>
   </form>
-  <section class="user-info">
+  <section class="user-info hidden">
     <p class="user-feedback" id="userFeedback"></p>
     <p class="total-spent" id="totalSpent">Total Spent: $0</p>
   </section>
   <section class="booking-options-container hidden" id="bookingInfo">
   </section>
   <section class="booked-rooms hidden" id="bookedRoomsList">
+  </section>
+  <section class="sign-in">
+    <label for="username">Username:</label>
+    <input class="sign-in-input" type="text" id="username"/>
+    <label for="password">Password:</label>
+    <input class="sign-in-input" type="password" id="password"/>
+    <button class="sign-in-btn" id="signInButton">sign in</button>
   </section>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
