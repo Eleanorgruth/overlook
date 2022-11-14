@@ -43,7 +43,7 @@ class Booking {
     return this.roomType = this.findRoom(room).roomType
   }
   findRoomBidet(room) {
-    return this.bidet = this.findRoom(room).bidetStatus
+    return this.bidet = this.findRoom(room).bidet
   }
   findRoomBedSize(room) {
     return this.bedSize = this.findRoom(room).bedSize

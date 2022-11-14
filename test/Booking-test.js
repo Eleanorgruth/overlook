@@ -50,11 +50,11 @@ describe('Booking', () => {
     expect(booking1.roomType).to.equal("residential suite")
     expect(booking2.roomType).to.equal("junior suite")
   })
-  it.skip('should hold the bidet status', () => {
+  it('should hold the bidet status', () => {
     expect(booking1.bidet).to.equal(false)
     expect(booking2.bidet).to.equal(true)
   })
-  it.skip('should hold the bidet message', () => {
+  it('should hold the bidet message', () => {
     expect(booking1.bidetMessage).to.equal("bidet not included")
     expect(booking2.bidetMessage).to.equal("bidet included")
   })
