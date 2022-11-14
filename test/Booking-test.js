@@ -1,8 +1,10 @@
-import chai from 'chai';
-const expect = chai.expect;
-import Booking from '../src/classes/Booking';
-import { sampleBookingData, sampleRoomData } from '../src/data/sample-data';
-
+import chai from 'chai'
+const expect = chai.expect
+import Booking from '../src/classes/Booking'
+import {
+  sampleBookingData,
+  sampleRoomData
+} from '../src/data/sample-data'
 
 describe('Booking', () => {
   sampleBookingData
