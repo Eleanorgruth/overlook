@@ -9,7 +9,10 @@ import {
 describe('Booking', () => {
   sampleBookingData
   sampleRoomData
-  let booking1, booking2, room4, room2
+  let booking1,
+    booking2,
+    room4,
+    room2
 
   beforeEach(() => {
     booking1 = new Booking(sampleBookingData[0], sampleRoomData)
