@@ -1,4 +1,3 @@
-//, userFeedback, bookingURL, displayBookedRoomsList, customer, apiRooms, getCustomerData
 import { giveUserError } from "./domUpdates"
 
 const getData = (url) => {
