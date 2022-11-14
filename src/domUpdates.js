@@ -14,6 +14,7 @@ const userFeedback = document.querySelector('#userFeedback')
 const navBar = document.querySelector('#navBar')
 const signOut = document.querySelector('#signOut')
 const userInfo = document.querySelector('#userInfo')
+const loginView = document.querySelector('#loginView')
 
 dateSelection.addEventListener('keypress', (event) => {
   if (event.key === 'Enter') {
@@ -30,7 +31,11 @@ roomTypeSelection.addEventListener('keypress', (event) => {
 bookARoomView.addEventListener('click', displayBookingOptions)
 myBookingView.addEventListener('click', displayMyBookings)
 searchRoom.addEventListener('click', displayAvalibleRooms)
+signOut.addEventListener('click', resetPage)
 
+function resetPage() {
+  window.location.reload()
+}
 function setMinimumDate() {
   dateSelection.min = new Date().toLocaleDateString('en-ca')
 }
@@ -51,13 +56,11 @@ function displayMyBookings() {
   userFeedback.innerText = ''
 }
 
-// function displayWelcomeMessage(customerName) {
-// }
-
 function displayBookedRoomsList(customer) {
   updateBookedRoomsList(customer)
   welcomeMessage.innerText = `Welcome, ${customer.name}`
   show([bookedRoomsList, navBar, signOut, totalSpent, userInfo])
+  hide([loginView])
 }
 
 function updateBookedRoomsList(customer) {
@@ -88,18 +91,20 @@ function displayAvalibleRooms() {
   if (dateSelection.value === '') {
     userFeedback.innerText = "Please select a date to search for a room"
   } else if (roomDirectory.filteredRooms.length === 0) {
-    userFeedback.innerText = "Sorry, there are no rooms available that meet your search criteria. Please try again."
+    userFeedback.innerText = `Sorry, there are no rooms available that meet 
+    your search criteria. Please try again.`
   } else {
     roomDirectory.filteredRooms.forEach((bookingOption) => {
       userFeedback.innerText = ''
       bookingOptions.innerHTML += `
       <section class="booking-option" id="${bookingOption.number}" tabindex='0'>
       <p>Room Number: ${bookingOption.number}</p>
-      <p>Room Info: ${bookingOption.roomType} with ${bookingOption.numBeds} ${bookingOption.bedSize}
-      bed(s)</p>
+      <p>Room Info: ${bookingOption.roomType} with ${bookingOption.numBeds} 
+      ${bookingOption.bedSize} bed(s)</p>
       <p>Room Cost: $${bookingOption.costPerNight}</p>
       <p>Room Date ${dateSelection.value}</p>
-      <button class="book-room-btn" id="${bookingOption.number}">Book Room</button>
+      <button class="book-room-btn" id="${bookingOption.number}">Book Room
+      </button>
     </section>
       `
     })
@@ -146,4 +151,5 @@ export {
   roomTypeSelection,
   bookingConfirmation,
   displayMyBookings,
+  show
 }
