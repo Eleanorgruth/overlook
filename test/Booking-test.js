@@ -57,10 +57,6 @@ describe('Booking', () => {
     expect(booking1.bidet).to.equal(false)
     expect(booking2.bidet).to.equal(true)
   })
-  it('should hold the bidet message', () => {
-    expect(booking1.bidetMessage).to.equal("bidet not included")
-    expect(booking2.bidetMessage).to.equal("bidet included")
-  })
   it('should hold the bed size', () => {
     expect(booking1.bedSize).to.equal("queen")
     expect(booking2.bedSize).to.equal("queen")

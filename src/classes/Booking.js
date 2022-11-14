@@ -10,7 +10,6 @@ class Booking {
     this.roomNumber = bookingInfo.roomNumber
     this.roomType = this.findRoomType(roomData)
     this.bidet = this.findRoomBidet(roomData)
-    this.bidetMessage = this.getBidetMessage()
     this.bedSize = this.findRoomBedSize(roomData)
     this.numBeds = this.findRoomNumBeds(roomData)
     this.costPerNight = this.findRoomCostPerNight(roomData)
@@ -24,13 +23,6 @@ class Booking {
       return "Past Booking"
     } else {
       return "Upcoming Booking"
-    }
-  }
-  getBidetMessage() {
-    if (this.bidet) {
-      return "bidet included"
-    } else {
-      return "bidet not included"
     }
   }
   findRoom(roomData) {
