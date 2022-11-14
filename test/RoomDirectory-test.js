@@ -1,7 +1,7 @@
 import chai from 'chai';
-import RoomDirectory from '../src/classes/RoomDirectory';
-import { sampleBookingData, sampleCustomerData, sampleRoomData } from '../src/data/sample-data';
 const expect = chai.expect;
+import RoomDirectory from '../src/classes/RoomDirectory';
+import { sampleBookingData, sampleRoomData } from '../src/data/sample-data';
 
 
 describe('RoomDirectory', () => {
