@@ -38,8 +38,8 @@ function logout() {
 
 function setMinimumAndMaximumDate() {
   dateSelection.min = new Date().toLocaleDateString('en-ca')
-  let maxYear = new Date().getFullYear()+1
-  let month = new Date().getMonth()+1
+  let maxYear = new Date().getFullYear() + 1
+  let month = new Date().getMonth() + 1
   let day = new Date().getDate()
   dateSelection.max = `${maxYear}-${month}-${day}`
 }
@@ -113,6 +113,7 @@ function displayAvalibleRooms() {
     })
   }
 }
+
 function bookingConfirmation() {
   bookingOptions.innerHTML = ''
   userFeedback.innerText = "Booking Confirmed"
@@ -120,22 +121,27 @@ function bookingConfirmation() {
   unselected(bookARoomView)
   unselected(myBookingView)
 }
+
 function hide(elementList) {
   elementList.forEach((currentElement) => {
     currentElement.classList.add('hidden')
   })
 }
+
 function show(elementList) {
   elementList.forEach((currentElement) => {
     currentElement.classList.remove('hidden')
   })
 }
+
 function selected(currentElement) {
   currentElement.classList.add('selected')
 }
+
 function unselected(currentElement) {
   currentElement.classList.remove('selected')
 }
+
 function giveUserError() {
   userFeedback.innerText = `Oops, something went wrong. Try again later.`
 }

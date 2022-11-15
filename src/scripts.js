@@ -12,7 +12,7 @@ import {
   giveUserError,
   show,
 } from './domUpdates'
-import { getData } from './apiCalls'
+import { getData, fetchData, postData } from './apiCalls'
 import RoomDirectory from './classes/RoomDirectory'
 
 let customersURL = 'http://localhost:3001/api/v1/customers/'
@@ -42,50 +42,31 @@ passwordInput.addEventListener('keypress', (event) => {
 function checkSignInInfo() {
   let username = usernameInput.value.slice(0, 8) 
   let usernameID = Number(usernameInput.value.slice(8))
-  if (username === "customer" && usernameID > 0 && usernameID <= 50
-   && passwordInput.value === "overlook2021") {
+  if (username === "customer" && usernameID > 0 && usernameID <= 50 && passwordInput.value === "overlook2021") {
     let customerURL = customersURL + usernameID
     fetchData([customerURL, roomURL, bookingURL])
+      .then(data => {
+        apiCustomers = data[0]
+        apiRooms = data[1].rooms
+        apiBookings = data[2].bookings
+        customer = new Customer(apiCustomers, apiBookings, apiRooms)
+        displayBookedRoomsList(customer)
+        setMinimumAndMaximumDate()
+        roomDirectory = new RoomDirectory(apiRooms, apiBookings)
+      })
   } else {
     show([signInErorr])
   }
 }
 
-function fetchData(urls) {
-  Promise.all([getData(urls[0]), getData(urls[1]), getData(urls[2])])
-    .then(data => {
-      apiCustomers = data[0]
-      apiRooms = data[1].rooms
-      apiBookings = data[2].bookings
-      customer = new Customer(apiCustomers, apiBookings, apiRooms)
-      displayBookedRoomsList(customer)
-      setMinimumAndMaximumDate()
-      roomDirectory = new RoomDirectory(apiRooms, apiBookings)
-    })
-    .catch(err => {
-      giveUserError()
-      console.log('Fetch Error: ', err)
-    })
-}
-
 function bookRoom(event) {
   if (event.target.classList[0] === 'book-room-btn') {
-    const postData = {
+    const dataForPost = {
       userID: customer.id,
       date: getDateForPost(dateSelection.value),
       roomNumber: Number(event.target.id)
     }
-    return fetch(bookingURL, {
-      method: 'POST',
-      body: JSON.stringify(postData),
-      headers: { 'Content-Type': 'application/json' }
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`Error: ${response.status}: ${response.statusText}`)
-        }
-        return response.json()
-      })
+    postData(bookingURL, dataForPost)
       .then(() => getData(bookingURL))
       .then(data => {
         customer = new Customer(apiCustomers, data.bookings, apiRooms)
@@ -94,7 +75,7 @@ function bookRoom(event) {
         bookingConfirmation()
         setTimeout(()=>{
           displayMyBookings()
-        }, 3000)
+        }, 2000)
       })
       .catch(err => {
         giveUserError()
