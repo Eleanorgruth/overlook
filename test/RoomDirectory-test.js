@@ -44,7 +44,7 @@ describe('RoomDirectory', () => {
     expect(roomDirectory.filteredRooms).to.deep.equal([room2])
     roomDirectory.findAvalibleRooms("2022/02/15", "residential suite", sampleBookingData)
     expect(roomDirectory.filteredRooms).to.deep.equal([room4])
-    roomDirectory.findAvalibleRooms("2023/02/14", "single room",sampleBookingData)
+    roomDirectory.findAvalibleRooms("2023/02/14", "single room", sampleBookingData)
     expect(roomDirectory.filteredRooms).to.deep.equal([room1, room3])
   })
   it('should be an empty array if no rooms meet the search criteria', () => {
