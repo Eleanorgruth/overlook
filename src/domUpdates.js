@@ -38,8 +38,8 @@ function logout() {
 
 function setMinimumAndMaximumDate() {
   dateSelection.min = new Date().toLocaleDateString('en-ca')
-  let maxYear = new Date().getFullYear()+1
-  let month = new Date().getMonth()+1
+  let maxYear = new Date().getFullYear() + 1
+  let month = new Date().getMonth() + 1
   let day = new Date().getDate()
   dateSelection.max = `${maxYear}-${month}-${day}`
 }
