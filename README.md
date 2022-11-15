@@ -26,6 +26,8 @@ Overlook is a hotel management tool that allows a user to login with a username 
 - Work with an API to send and receive data
 - Create a robust test suite that thoroughly tests all functionality of a client-side application
 
+The project spec can be found [here](https://frontend.turing.edu/projects/overlook.html)
+
 ## Installation Instructions 
 1. clone down the [Overlook Hotel API](https://github.com/turingschool-examples/webpack-starter-kit)
 2. `cd` into the directory
