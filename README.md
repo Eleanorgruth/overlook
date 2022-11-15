@@ -30,7 +30,7 @@ Overlook is a hotel management tool that allows a user to login with a username 
 1. clone down the [Overlook Hotel API](https://github.com/turingschool-examples/webpack-starter-kit)
 2. `cd` into the directory
 3. run `npm install`
-4. run `npm start` (keep this running an open another terminal tab)
+4. run `npm start`
 5. clone this repository to your local machine
 6. run `npm install`
 7. run `npm start`
