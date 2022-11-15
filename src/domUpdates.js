@@ -91,8 +91,8 @@ function displayAvalibleRooms() {
   event.preventDefault()
   bookingOptions.innerHTML = ''
   roomDirectory.findAvalibleRooms(dateSelection.value, roomTypeSelection.value)
-  if (dateSelection.value === '') {
-    userFeedback.innerText = "Please select a date to search for a room"
+  if (dateSelection.value === '' || new Date(dateSelection.value).getTime() < new Date(dateSelection.min).getTime()) {
+    userFeedback.innerText = "Please select a valid date to search for a room"
   } else if (roomDirectory.filteredRooms.length === 0) {
     userFeedback.innerText = `Sorry, there are no rooms available that meet 
     your search criteria. Please try again.`
